@@ -76,12 +76,14 @@ Vue.createApp({
           ],
         },
       ],
-      //
-
+      //contatore chat corrente
+      currentChat: 0,
     }
   },
   methods: {
-
+    changeChat(i) {
+      this.currentChat = i;
+    }
   },
   mounted() {
 

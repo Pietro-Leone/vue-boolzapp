@@ -55,7 +55,8 @@ body::after {
 
 .contacts {
     flex-grow: 1;
-    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 /* Elementi container left */
@@ -70,6 +71,7 @@ body::after {
 
 .avatar img {
     width: 50px;
+    margin-right: .5rem;
 }
 
 .user i {
@@ -86,6 +88,7 @@ body::after {
 .contact {
     height: 70px;
     border-bottom: 1px solid #d6d6d6;
+    cursor: pointer;
 }
 
 .chat-info {
@@ -118,7 +121,7 @@ body::after {
 
 .textarea {
     max-width: 400px;
-    padding: .5rem .2rem .5rem .5rem;
+    padding: .8rem .5rem .8rem .8rem;
     border-radius: 5px;
     font-size: .8rem;
 }
@@ -134,5 +137,6 @@ body::after {
 .message .date {
     font-size: .5rem;
     color: lightgray;
-    margin-bottom: -.3rem;
+    margin-bottom: -.5rem;
+    max-width: 50px;
 }
