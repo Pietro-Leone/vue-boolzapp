@@ -29,28 +29,32 @@ body::after {
 
 /* Layout container left */
 .left-container {
-    width: 30%;
+    min-width: 200px;
+    width: 35%;
     border-right: 1px solid #d6d6d6;
+    flex-shrink: 0;
 }
 
 .user {
     height: 60px;
     background-color: #eaeaea;
+    flex-shrink: 0;
 }
 
 .notifications {
     height: 70px;
     background-color: #8edafc;
+    flex-shrink: 0;
 }
 
 .search-bar {
     height: 50px;
     background-color: #fafafa;
+    flex-shrink: 0;
 }
 
 .contacts {
     flex-grow: 1;
-    max-height: calc(100% - 170px);
     overflow: auto;
 }
 
@@ -79,13 +83,11 @@ body::after {
     color: #8edafc;
 }
 
-.chat {
+.contact {
     height: 70px;
     background-color: lightblue;
 
 }
-
-.name-chat {}
 
 .chat-info {
     font-size: .75rem;
@@ -95,4 +97,43 @@ body::after {
 /* Layout container right */
 .right-container {
     flex-grow: 1;
+}
+
+.chat {
+    background-image: url("../img/mine.jpg");
+    background-size: 400px;
+    overflow: auto;
+}
+
+.input-area-container {
+    flex-shrink: 0;
+    background-color: #f3eeea;
+    height: 50px;
+}
+
+/* Elenmenti container right */
+.input-area-container i {
+    width: 50px;
+    font-size: 1.5rem;
+}
+
+.textarea {
+    max-width: 400px;
+    padding: .5rem .2rem .5rem .5rem;
+    border-radius: 5px;
+    font-size: .8rem;
+}
+
+.sent .textarea {
+    background-color: #d5f9ba !important;
+}
+
+.sent>div {
+    justify-content: flex-end;
+}
+
+.message .date {
+    font-size: .5rem;
+    color: lightgray;
+    margin-bottom: -.3rem;
 }
