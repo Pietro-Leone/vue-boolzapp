@@ -1,0 +1,28 @@
+:root {}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #dbdbd2;
+    height: 100vh;
+    overflow: hidden;
+}
+
+body::after {
+    content: "";
+    display: block;
+    height: 127px;
+    width: 100%;
+    background-color: #009688;
+    position: fixed;
+    top: 0;
+    z-index: -1;
+}
+
+.container {
+    height: calc(100% - 48px);
+}
