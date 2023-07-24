@@ -62,19 +62,21 @@
                     </div>
                     <!-- Sezione Contatti -->
                     <div class="contacts">
+
                         <!-- Contatto -->
-                        <div class="contact p-1 d-flex justify-content-between align-items-center">
+                        <div class="contact p-1 d-flex justify-content-between align-items-center"
+                            v-for="element in contatti">
                             <div class="d-flex">
                                 <div class="avatar">
-                                    <img src="./img/avatar_1.jpg" class="rounded-circle" alt="avatar">
+                                    <img :src="`./img/avatar${element.avatar}.jpg`" class="rounded-circle" alt="avatar">
                                 </div>
                                 <div>
-                                    <div class="name-chat">Michele</div>
-                                    <div class="chat-info">ultimo messaggio inviato</div>
+                                    <div class="name-chat">{{element.name}}</div>
+                                    <div class="chat-info">{{element.messages[element.messages.length - 1].message}}</div>
                                 </div>
                             </div>
-                            <div class="h-100">
-                                <div class="chat-info">12:00</div>
+                            <div class="h-100 text-end" style="max-width: 70px;">
+                                <div class="chat-info">{{element.messages[element.messages.length - 1].date}}</div>
                             </div>
                         </div>
 
