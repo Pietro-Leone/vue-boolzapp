@@ -19,7 +19,62 @@
 
     <div id="app" class="h-100 w-100">
 
-        <div class="container bg-white p-0 my-4"></div>
+        <div class="container bg-white p-0 my-4">
+            <div class="d-flex h-100 w-100">
+                <div class="left-container d-flex flex-column">
+                    <!-- Sezione User -->
+                    <div class="user d-flex justify-content-between ps-2">
+                        <div class="avatar">
+                            <img src="./img/avatar_io.jpg" class="rounded-circle" alt="io">
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fa-solid fa-circle-notch"></i>
+                            <i class="fa-solid fa-message"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
+                    <!-- Sezione notifications -->
+                    <div class="notifications d-flex align-items-center">
+                        <div class="rounded-circle bg-white d-flex align-items-center justify-content-center mx-3"
+                            style="width: 40px; aspect-ratio: 1/1;">
+                            <i class="fa-solid fa-bell-slash"></i>
+                        </div>
+                        <div style="font-size: .7rem;">
+                            <div>Ricevi notifiche di nuovi messaggi</div>
+                            <a href="#0" style="color: gray;">Attiva notifiche desktop</a>
+                        </div>
+                    </div>
+                    <!-- Sezione search-bar -->
+                    <div class="search-bar p-1 d-flex align-items-center">
+                        <div class="input-group rounded">
+                            <span class="input-group-text border-" id="search-addon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <input type="search" class="form-control rounded rounded-start-0" placeholder="Search"
+                                aria-label="Search" aria-describedby="search-addon" />
+                        </div>
+                    </div>
+                    <!-- Sezione chat -->
+                    <div class="contacts">
+                        <div class="chat p-1 d-flex justify-content-between align-items-center">
+                            <div class="d-flex">
+                                <div class="avatar">
+                                    <img src="./img/avatar_1.jpg" class="rounded-circle" alt="avatar">
+                                </div>
+                                <div>
+                                    <div class="name-chat">Michele</div>
+                                    <div class="chat-info">ultimo messaggio inviato</div>
+                                </div>
+                            </div>
+                            <div class="h-100">
+                                <div class="chat-info">12:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-container"></div>
+            </div>
+        </div>
 
     </div>
 

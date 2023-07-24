@@ -26,3 +26,73 @@ body::after {
 .container {
     height: calc(100% - 48px);
 }
+
+/* Layout container left */
+.left-container {
+    width: 30%;
+    border-right: 1px solid #d6d6d6;
+}
+
+.user {
+    height: 60px;
+    background-color: #eaeaea;
+}
+
+.notifications {
+    height: 70px;
+    background-color: #8edafc;
+}
+
+.search-bar {
+    height: 50px;
+    background-color: #fafafa;
+}
+
+.contacts {
+    flex-grow: 1;
+    max-height: calc(100% - 170px);
+    overflow: auto;
+}
+
+/* Elementi container left */
+
+.avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 100%;
+}
+
+.avatar img {
+    width: 50px;
+}
+
+.user i {
+    width: 24px;
+    text-align: center;
+    color: #b1b1b1;
+}
+
+.notifications i {
+    font-size: 1.25rem;
+    color: #8edafc;
+}
+
+.chat {
+    height: 70px;
+    background-color: lightblue;
+
+}
+
+.name-chat {}
+
+.chat-info {
+    font-size: .75rem;
+    color: gray;
+}
+
+/* Layout container right */
+.right-container {
+    flex-grow: 1;
+}
