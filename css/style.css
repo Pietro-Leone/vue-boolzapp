@@ -126,6 +126,16 @@ body::after {
     font-size: 1rem;
 }
 
+.textarea i {
+    cursor: pointer;
+    display: none;
+    color: #8d9f7f;
+}
+
+.textarea:hover i {
+    display: block;
+}
+
 .sent .textarea {
     background-color: #d5f9ba !important;
 }

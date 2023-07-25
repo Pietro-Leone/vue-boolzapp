@@ -137,6 +137,10 @@ Vue.createApp({
       listClone.status = "received";
       this.contatti[this.currentChat].messages.push(listClone);
     },
+    // Funzione per eliminare un messagio
+    deleteMessage(i) {
+      this.contatti[this.currentChat].messages.splice(i, 1);
+    }
   },
   mounted() { },
 }).mount("#app");
