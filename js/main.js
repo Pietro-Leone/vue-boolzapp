@@ -84,6 +84,8 @@ Vue.createApp({
       },
       //contatore chat corrente
       currentChat: 0,
+      // Search
+      search: "",
     }
   },
   methods: {
@@ -134,7 +136,7 @@ Vue.createApp({
       listClone.message = "Ok";
       listClone.status = "received";
       this.contatti[this.currentChat].messages.push(listClone);
-    }
+    },
   },
   mounted() { },
 }).mount("#app");
