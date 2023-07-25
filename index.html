@@ -65,7 +65,8 @@
             <!-- Contatto -->
             <div class="contact p-1 justify-content-between align-items-center" v-for="(element, i) in contatti"
               @click="changeChat(i)" v-show="((element.name).toLowerCase().includes((search).toLowerCase()))"
-              :class="((element.name).toLowerCase().includes((search).toLowerCase()) ? 'd-flex' : '')">
+              :class="((element.name).toLowerCase().includes((search).toLowerCase()) ? 'd-flex' : '')"
+              :style=" (currentChat === i ? 'background-color: #b1b1b1;' : '')">
               <div class="d-flex w-25">
                 <div class="avatar">
                   <img :src="`./img/avatar${element.avatar}.jpg`" class="rounded-circle" alt="avatar">
