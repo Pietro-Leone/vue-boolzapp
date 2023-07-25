@@ -76,16 +76,65 @@ Vue.createApp({
           ],
         },
       ],
+      // Oggetto che rappresenta un nuovo messaggio
+      newMessage: {
+        date: this.currentDate(),
+        message: "",
+        status: "",
+      },
       //contatore chat corrente
       currentChat: 0,
     }
   },
   methods: {
+    // Funzione selezione chat
     changeChat(i) {
       this.currentChat = i;
+    },
+    // Funzione che divide la data in due e ritorna solo il valore dell'orario
+    currentTime(element) {
+      const elementSplit = element.split(" ");
+      const time = elementSplit[1];
+      return time
+    },
+    // Funzione che ritorna la data corrente e la corregge aggiungendo lo 0 davanti
+    currentDate() {
+      let date = new Date();
+      let day = date.getDate();
+      if (day < 10) {
+        day = `0${day}`;
+      }
+      let month = date.getMonth() + 1;
+      if (month < 10) {
+        month = `0${month}`;
+      }
+      let year = date.getFullYear();
+      let hours = date.getHours();
+      if (hours < 10) {
+        hours = `0${hours}`;
+      }
+      let min = date.getMinutes();
+      if (min < 10) {
+        min = `0${min}`;
+      }
+      let current = `${day}/${month}/${year} ${hours}:${min}`;
+      return current;
+    },
+    // Funzione per inviare un messaggio
+    sendMessage() {
+      const listClone = { ...this.newMessage };
+      listClone.status = "sent";
+      this.contatti[this.currentChat].messages.push(listClone);
+      this.newMessage.message = "";
+      setTimeout(this.answer, 1000);
+    },
+    // Funzione che si avvia al termine della funzione "sentMessage" che invia un messaggio con scritto "ok"
+    answer() {
+      const listClone = { ...this.newMessage };
+      listClone.message = "Ok";
+      listClone.status = "received";
+      this.contatti[this.currentChat].messages.push(listClone);
     }
   },
-  mounted() {
-
-  },
+  mounted() { },
 }).mount("#app");

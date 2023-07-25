@@ -123,7 +123,7 @@ body::after {
     max-width: 400px;
     padding: .8rem .5rem .8rem .8rem;
     border-radius: 5px;
-    font-size: .8rem;
+    font-size: 1rem;
 }
 
 .sent .textarea {
@@ -135,7 +135,7 @@ body::after {
 }
 
 .message .date {
-    font-size: .5rem;
+    font-size: .75rem;
     color: lightgray;
     margin-bottom: -.5rem;
     max-width: 50px;
