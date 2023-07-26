@@ -33,20 +33,20 @@
               <div>Sofia</div>
             </div>
             <div class="d-flex align-items-center">
-              <i class="fa-solid fa-circle-notch"></i>
-              <i class="fa-solid fa-message"></i>
-              <i class="fa-solid fa-ellipsis-vertical"></i>
+              <a href="#"><i class="fa-solid fa-circle-notch"></i></a>
+              <a href="#"><i class="fa-solid fa-message"></i></a>
+              <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
             </div>
           </div>
           <!-- Sezione notifications -->
-          <div class="notifications d-flex align-items-center">
+          <div class="notifications d-flex align-items-center" v-if="allow === false">
             <div class="rounded-circle bg-white d-flex align-items-center justify-content-center mx-3"
               style="width: 40px; aspect-ratio: 1/1;">
               <i class="fa-solid fa-bell-slash"></i>
             </div>
             <div style="font-size: .7rem;">
               <div>Ricevi notifiche di nuovi messaggi</div>
-              <a href="#0" style="color: gray;">Attiva notifiche desktop</a>
+              <a href="#0" style="color: gray;" @click="allowNotification">Attiva notifiche desktop</a>
             </div>
           </div>
           <!-- Sezione search-bar -->
@@ -66,7 +66,7 @@
             <div class="contact p-1 justify-content-between align-items-center" v-for="(element, i) in contatti"
               @click="changeChat(i)" v-show="((element.name).toLowerCase().includes((search).toLowerCase()))"
               :class="((element.name).toLowerCase().includes((search).toLowerCase()) ? 'd-flex' : '')"
-              :style=" (currentChat === i ? 'background-color: #b1b1b1;' : '')">
+              :style=" (currentChat === i ? 'background-color: lightgray;' : '')">
               <div class="d-flex w-25">
                 <div class="avatar">
                   <img :src="`./img/avatar${element.avatar}.jpg`" class="rounded-circle" alt="avatar">
@@ -101,40 +101,42 @@
               </div>
             </div>
             <div class="d-flex align-items-center">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <i class="fa-solid fa-paperclip"></i>
-              <i class="fa-solid fa-ellipsis-vertical"></i>
+              <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+              <a href="#"><i class="fa-solid fa-paperclip"></i></a>
+              <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
             </div>
           </div>
           <!-- Chat -->
-          <div class="chat d-flex flex-grow-1 flex-column p-3">
+          <div class="chat d-flex flex-grow-1 p-3" ref="chat">
+            <div class="d-flex flex-column mt-auto w-100">
 
-            <!-- Messaggio singolo -->
-            <div class="message w-100 mb-2" :class="(element.status === 'sent' ? 'sent' : '' )"
-              v-for="(element, i) in contatti[currentChat].messages">
-              <div class="w-100 d-flex">
-                <div class="textarea d-flex align-items-center bg-white position-relative">
-                  <div class="d-flex align-items-end">
-                    {{element.message}}
+              <!-- Messaggio singolo -->
+              <div class="message w-100 mb-2" :class="(element.status === 'sent' ? 'sent' : '' )"
+                v-for="(element, i) in contatti[currentChat].messages">
+                <div class="w-100 d-flex">
+                  <div class="textarea d-flex align-items-center bg-white position-relative">
+                    <div class="d-flex align-items-end" style="word-break: break-all;">
+                      {{element.message}}
 
-                    <div class="dropdown position-absolute" style="top: 6px; right: 8px;">
-                      <a href="#" class="d-block link-body-emphasis text-decoration-none show"
-                        data-bs-toggle="dropdown"><i class="fa-solid fa-chevron-down"></i></a>
-                      <ul class="dropdown-menu text-small shadow"
-                        style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 34px);"
-                        data-popper-placement="bottom-end">
-                        <li><a class="dropdown-item" @click="deleteMessage(i)" href="#">Cancella</a></li>
-                      </ul>
-                    </div>
+                      <div class="dropdown position-absolute" style="top: 6px; right: 8px;">
+                        <a href="#" class="d-block link-body-emphasis text-decoration-none show"
+                          data-bs-toggle="dropdown"><i class="fa-solid fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu text-small shadow"
+                          style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 34px);"
+                          data-popper-placement="bottom-end">
+                          <li><a class="dropdown-item" @click="deleteMessage(i)" href="#">Cancella</a></li>
+                        </ul>
+                      </div>
 
-                    <div class="date ms-3 text-center">
-                      {{currentTime(element.date)}}
+                      <div class="date ms-3 text-center" style="min-width: fit-content;">
+                        {{currentTime(element.date)}}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
+            </div>
           </div>
           <!-- Message -->
           <div class="input-area-container d-flex align-items-center justify-content-between">

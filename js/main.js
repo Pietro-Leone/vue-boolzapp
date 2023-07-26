@@ -86,6 +86,8 @@ Vue.createApp({
       currentChat: 0,
       // Search
       search: "",
+      // allow Notifications
+      allow: false,
     }
   },
   methods: {
@@ -100,6 +102,7 @@ Vue.createApp({
       return time
     },
     // Funzione che ritorna la data corrente e la corregge aggiungendo lo 0 davanti
+    // In alternativa si poteva utilizzare: Intl.DateTimeFormat()
     currentDate() {
       let date = new Date();
       let day = date.getDate();
@@ -128,6 +131,7 @@ Vue.createApp({
       listClone.status = "sent";
       this.contatti[this.currentChat].messages.push(listClone);
       this.newMessage.message = "";
+      setTimeout(this.scrollFN, 0);
       setTimeout(this.answer, 1000);
     },
     // Funzione che si avvia al termine della funzione "sentMessage" che invia un messaggio con scritto "ok"
@@ -136,11 +140,22 @@ Vue.createApp({
       listClone.message = "Ok";
       listClone.status = "received";
       this.contatti[this.currentChat].messages.push(listClone);
+      setTimeout(this.scrollFN, 0);
+    },
+    // Funzione di scroll
+    // In alternativa si può usare il $nextTick(){}
+    scrollFN() {
+      this.$refs.chat.scrollTop = this.$refs.chat.scrollHeight;
     },
     // Funzione per eliminare un messagio
     deleteMessage(i) {
       this.contatti[this.currentChat].messages.splice(i, 1);
-    }
+    },
+    // Funzione per attivare le notifiche
+    allowNotification() {
+      this.allow = true;
+    },
+
   },
   mounted() { },
 }).mount("#app");

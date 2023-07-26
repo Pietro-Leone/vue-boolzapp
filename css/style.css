@@ -80,6 +80,10 @@ body::after {
     color: #b1b1b1;
 }
 
+.user a {
+    margin: 0 .5rem;
+}
+
 .notifications i {
     font-size: 1.25rem;
     color: #8edafc;
