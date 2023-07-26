@@ -84,18 +84,26 @@ Vue.createApp({
       },
       //contatore chat corrente
       currentChat: 0,
+      // contatore messaggio corrente
+      messageChat: 0,
       // Search
       search: "",
       // allow Notifications
       allow: false,
       // Altezza default textarea
       txtHeight: 0,
+      // Array che salva il contenuto dell'input textarea
+      currentMessages: [],
     }
   },
   methods: {
     // Funzione selezione chat
+    // Oltre a cambiare chat, salva il contenuto dell'input textarea e lo ripulisce
     changeChat(i) {
+      this.messageChat = this.currentChat;
       this.currentChat = i;
+      this.currentMessages.splice(this.messageChat, 1, this.newMessage.message);
+      this.newMessage.message = this.currentMessages[this.currentChat];
     },
     // Funzione che divide la data in due e ritorna solo il valore dell'orario
     currentTime(element) {
@@ -129,9 +137,10 @@ Vue.createApp({
     },
     // Funzione per inviare un messaggio
     sendMessage() {
+      this.messageChat = this.currentChat;
       const listClone = { ...this.newMessage };
       listClone.status = "sent";
-      this.contatti[this.currentChat].messages.push(listClone);
+      this.contatti[this.messageChat].messages.push(listClone);
       this.newMessage.message = "";
       setTimeout(this.scrollFN, 0);
       setTimeout(this.answer, 1000);
@@ -141,7 +150,7 @@ Vue.createApp({
       const listClone = { ...this.newMessage };
       listClone.message = "Ok";
       listClone.status = "received";
-      this.contatti[this.currentChat].messages.push(listClone);
+      this.contatti[this.messageChat].messages.push(listClone);
       setTimeout(this.scrollFN, 0);
     },
     // Funzione di scroll
@@ -168,5 +177,10 @@ Vue.createApp({
     },
 
   },
-  mounted() { },
+  mounted() {
+    // all'avvio riempe di stringhe vuote l'array del messaggio corrente
+    for (let i = 0; i < this.contatti.length; i++) {
+      this.currentMessages.push("")
+    }
+  },
 }).mount("#app");
