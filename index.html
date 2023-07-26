@@ -114,7 +114,7 @@
 
               <!-- Messaggio singolo -->
               <div class="message w-100 mb-2" :class="(element.status === 'sent' ? 'sent' : '' )"
-                v-for="(element, i) in contatti[currentChat].messages">
+                v-for="(element, i) in contatti[currentChat].messages" v-show="(element.message !== null)">
                 <div class="w-100 d-flex">
                   <div class="textarea d-flex align-items-center bg-white position-relative">
                     <div class="d-flex align-items-end" style="word-break: break-all;">

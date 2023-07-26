@@ -82,6 +82,12 @@ Vue.createApp({
         message: "",
         status: "",
       },
+      // Messagio invisibile che segna l'inizio di una chat
+      voidMessage: {
+        date: "",
+        message: null,
+        status: "",
+      },
       //contatore chat corrente
       currentChat: 0,
       // contatore messaggio corrente
@@ -178,9 +184,11 @@ Vue.createApp({
 
   },
   mounted() {
-    // all'avvio riempe di stringhe vuote l'array del messaggio corrente
     for (let i = 0; i < this.contatti.length; i++) {
+      // All'avvio riempe di stringhe vuote l'array del messaggio corrente
       this.currentMessages.push("")
+      // All'avvio inserisce un messaggio vuoto all'inizio di ogni chat
+      this.contatti[i].messages.unshift(this.voidMessage)
     }
   },
 }).mount("#app");
