@@ -88,6 +88,8 @@ Vue.createApp({
       search: "",
       // allow Notifications
       allow: false,
+      // Altezza default textarea
+      txtHeight: 0,
     }
   },
   methods: {
@@ -146,6 +148,15 @@ Vue.createApp({
     // In alternativa si può usare il $nextTick(){}
     scrollFN() {
       this.$refs.chat.scrollTop = this.$refs.chat.scrollHeight;
+    },
+    // Resize della textarea
+    keyupTxt() {
+      setTimeout(this.scrollTxt, 0)
+    },
+    // Calcola l'altezza della textarea
+    scrollTxt() {
+      const h = this.$refs.txtarea.scrollHeight;
+      this.txtHeight = h;
     },
     // Funzione per eliminare un messagio
     deleteMessage(i) {

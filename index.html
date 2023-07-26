@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="./img/favicon.png">
   <link rel="stylesheet" href="css/style.css">
-  <title>WhatsApp</title>
+  <title>BoolzApp</title>
 </head>
 
 <body>
@@ -63,22 +63,23 @@
           <div class="contacts">
 
             <!-- Contatto -->
-            <div class="contact p-1 justify-content-between align-items-center" v-for="(element, i) in contatti"
-              @click="changeChat(i)" v-show="((element.name).toLowerCase().includes((search).toLowerCase()))"
-              :class="((element.name).toLowerCase().includes((search).toLowerCase()) ? 'd-flex' : '')"
-              :style=" (currentChat === i ? 'background-color: lightgray;' : '')">
-              <div class="d-flex w-25">
-                <div class="avatar">
-                  <img :src="`./img/avatar${element.avatar}.jpg`" class="rounded-circle" alt="avatar">
-                </div>
-                <div style="width: 220%;">
-                  <div class="name-chat">{{element.name}}</div>
-                  <div class="chat-info text-truncate">{{element.messages[element.messages.length - 1].message}}
+            <div v-for="(element, i) in contatti">
+              <div class=" d-flex contact p-1 justify-content-between align-items-center" @click="changeChat(i)"
+                v-if="((element.name).toLowerCase().includes((search).toLowerCase()))"
+                :style=" (currentChat === i ? 'background-color: lightgray;' : '')">
+                <div class="d-flex w-25">
+                  <div class="avatar">
+                    <img :src="`./img/avatar${element.avatar}.jpg`" class="rounded-circle" alt="avatar">
+                  </div>
+                  <div style="width: 220%;">
+                    <div class="name-chat">{{element.name}}</div>
+                    <div class="chat-info text-truncate">{{element.messages[element.messages.length - 1].message}}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="h-100 text-end" style="max-width: 70px;">
-                <div class="chat-info">{{element.messages[element.messages.length - 1].date}}</div>
+                <div class="h-100 text-end" style="max-width: 70px;">
+                  <div class="chat-info">{{element.messages[element.messages.length - 1].date}}</div>
+                </div>
               </div>
             </div>
 
@@ -88,22 +89,23 @@
         <!-- Right Container -->
         <div class="right-container d-flex flex-column">
           <!-- Sezione User -->
-          <div class="user justify-content-between ps-2" :class="(currentChat === i ? 'd-flex' : '')"
-            v-for="(element, i) in contatti" v-show="(currentChat === i)">
-            <div class="d-flex align-items-center">
-              <div class="avatar">
-                <img :src="`./img/avatar${element.avatar}.jpg`" class="rounded-circle" alt="avatar">
+          <div v-for="(element, i) in contatti">
+            <div class="user d-flex justify-content-between ps-2" v-if="(currentChat === i)">
+              <div class="d-flex align-items-center">
+                <div class="avatar">
+                  <img :src="`./img/avatar${element.avatar}.jpg`" class="rounded-circle" alt="avatar">
+                </div>
+                <div>
+                  <div>{{element.name}}</div>
+                  <div class="chat-info">ultimo accesso oggi alle
+                    {{currentTime(element.messages[element.messages.length-1].date)}}</div>
+                </div>
               </div>
-              <div>
-                <div>{{element.name}}</div>
-                <div class="chat-info">ultimo accesso oggi alle {{currentTime(element.messages[element.messages.length -
-                  1].date)}}</div>
+              <div class="d-flex align-items-center">
+                <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <a href="#"><i class="fa-solid fa-paperclip"></i></a>
+                <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
               </div>
-            </div>
-            <div class="d-flex align-items-center">
-              <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-              <a href="#"><i class="fa-solid fa-paperclip"></i></a>
-              <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
             </div>
           </div>
           <!-- Chat -->
@@ -144,8 +146,9 @@
               <i class="fa-regular fa-face-smile"></i>
             </div>
             <div class="input-group my-2">
-              <input type="text" class="form-control" v-model="newMessage.message" @keyup.enter="sendMessage()"
-                placeholder="Scrivi un messaggio">
+              <textarea class="form-control" :style="`height: ${txtHeight}px;`" v-model="newMessage.message"
+                @keyup.enter="sendMessage()" placeholder="Scrivi un messaggio" ref="txtarea"
+                @keyup="keyupTxt"></textarea>
             </div>
             <div class="d-flex align-items-center text-center">
               <i class="fa-solid fa-microphone"></i>
